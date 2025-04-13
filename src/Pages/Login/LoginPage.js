@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { FaGoogle, FaFacebookF, FaApple, FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+
 export default function LoginScreen() {
   const [isRegistering, setIsRegistering] = useState(false);
   const navigate = useNavigate();
+
   const handleLogin = () => {
-    // You can also validate login here
     navigate('/home');
   };
 
   const handleRegisterClick = () => {
-    setIsRegistering(true); // Show the registration form
+    setIsRegistering(true);
   };
 
   const handleLoginClick = () => {
-    setIsRegistering(false); // Show the login form
+    setIsRegistering(false);
   };
 
   return (
@@ -44,18 +45,17 @@ export default function LoginScreen() {
             </p>
           </div>
 
-          {/* Form Fields with animation */}
+          {/* Form Fields */}
           <div className="flex flex-col gap-4 mt-6 transition-all duration-300 ease-in-out">
             {/* Name Field for Registration */}
             {isRegistering && (
               <div>
-                
                 <div className="flex items-center border border-black-100 rounded-lg px-3 mt-1">
                   <FaUser className="text-gray-400" />
                   <input
                     type="text"
                     placeholder="Your Name"
-                    className="w-full p-3 outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                    className="w-full p-3 outline-none transition duration-300"
                   />
                 </div>
               </div>
@@ -63,26 +63,24 @@ export default function LoginScreen() {
 
             {/* Email Field */}
             <div>
-             
               <div className="flex items-center border border-black-100 rounded-lg px-3 mt-1">
                 <FaEnvelope className="text-gray-400" />
                 <input
                   type="email"
                   placeholder="example@mail.com"
-                  className="w-full p-3 outline-none focus:ring-2  transition duration-300"
+                  className="w-full p-3 outline-none transition duration-300"
                 />
               </div>
             </div>
 
             {/* Password Field */}
             <div>
-         
               <div className="flex items-center border border-black-100 rounded-lg px-3 mt-1">
                 <FaLock className="text-gray-400" />
                 <input
                   type="password"
                   placeholder="**********"
-                  className="w-full p-3 outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                  className="w-full p-3 outline-none transition duration-300"
                 />
               </div>
             </div>
@@ -94,7 +92,7 @@ export default function LoginScreen() {
 
           {/* Login/Register Button */}
           <button
-          onClick={handleLogin}
+            onClick={handleLogin}
             type="submit"
             className="bg-blue-500 font-bold text-sm text-black bg-opacity-30 py-3 rounded-lg border border-black-300 backdrop-blur-lg hover:bg-blue-600 hover:bg-opacity-40 transition duration-300"
           >
@@ -152,6 +150,7 @@ export default function LoginScreen() {
     </div>
   );
 }
+
 
 
 
