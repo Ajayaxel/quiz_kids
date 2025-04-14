@@ -4,24 +4,30 @@ import { useNavigate } from 'react-router-dom';
 export default function HomeScreen() {
   const navigate = useNavigate();
   const handleroutes = () => {
-    navigate('/quizpageone');
+    navigate('/quizpagetwo');
   };
+
   const words = [
     "pencil", "teacher", "speak", "blue", "zoo",
     "silly", "quickly", "school", "leaf", "enormous"
   ];
 
   const correctAnswers = ["pencil", "teacher", "zoo", "school", "leaf"];
+  const wordRows = [
+    ["pencil", "teacher", "speak"],           // Row 1
+    ["blue", "zoo", "silly", "quickly"],      // Row 2
+    ["school", "leaf", "enormous"]            // Row 3
+  ];
 
   const [selectedWords, setSelectedWords] = useState([]);
   const [feedbackMessage, setFeedbackMessage] = useState("");
-  const [bottomMessage, setBottomMessage] = useState(""); // 🐻 Teddy bear message
+  const [bottomMessage, setBottomMessage] = useState("");
 
   const toggleWord = (word) => {
     const isAlreadySelected = selectedWords.includes(word);
     if (isAlreadySelected) {
       setSelectedWords(selectedWords.filter((w) => w !== word));
-      setBottomMessage(""); // Clear teddy message on unselect
+      setBottomMessage("");
     } else {
       setSelectedWords([...selectedWords, word]);
 
@@ -78,25 +84,22 @@ export default function HomeScreen() {
           QUESTION 1/4
         </button>
       </div>
+      {/* Header end */}
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col lg:flex-row justify-between items-center px-6 lg:px-20 py-6 overflow-hidden">
         {/* Left Image */}
         <div className="flex h-[800px] flex-col items-center justify-center relative">
-          {/* Feedback message above teddy bear */}
           {feedbackMessage && (
             <div className="absolute top-[-60px] bg-white px-4 py-2 rounded shadow-md border text-sm font-semibold text-gray-800 animate-bounce z-10">
               {feedbackMessage}
             </div>
           )}
-
           <img
             src="/Group 20.png"
             alt="Polar Bear"
-            className="w-full max-w-[700px] h-auto object-contain"
+            className="w-full max-w-[700px] h-auto object-contain lg:w-[80%] md:w-[60%] sm:w-[100%]"
           />
-
-          {/* ✅❌ Bottom teddy feedback message */}
           {bottomMessage && (
             <div className="absolute bottom-4 w-full text-center">
               <p className={`text-lg font-semibold ${bottomMessage.includes("not") ? "text-red-600" : "text-green-600"}`}>
@@ -108,31 +111,58 @@ export default function HomeScreen() {
 
         {/* Right Content */}
         <div className="mt-8 lg:mt-0 lg:w-1/2 text-center">
-          <p className="text-black text-base lg:text-lg mb-4">
-            <span className="font-bold text-orange-600">1. Circle</span> the nouns below.
+          <p className="text-black text-base lg:text-lg mb-4 font-sans">
+            <span className="font-bold">1.</span>{' '}
+            <span className="relative inline-block align-middle mx-1">
+              <span className="relative z-10 italic mr-1 ml-1 px-1">Circle</span>
+              <svg
+                className="absolute top-1/2 left-1/2 z-0 -translate-x-1/2 -translate-y-1/2"
+                width="75"
+                height="30"
+                viewBox="0 0 75 30"
+              >
+                <ellipse
+                  cx="37.5"
+                  cy="15"
+                  rx="34"
+                  ry="12"
+                  fill="none"
+                  stroke="#f4a72b"
+                  strokeWidth="3"
+                />
+              </svg>
+            </span>
+            the <span className="font-bold">nouns</span> below.
           </p>
-          <div className="bg-white border-2 border-gray-300 rounded-[25px] p-6 flex flex-wrap justify-center gap-3 max-w-md mx-auto">
-            {words.map((word) => {
-              const isSelected = selectedWords.includes(word);
-              const correct = isSelected && isCorrect(word);
-              const wrong = isSelected && !isCorrect(word);
 
-              return (
-                <span
-                  key={word}
-                  onClick={() => toggleWord(word)}
-                  className={`px-4 py-2 border-2 rounded-full text-sm cursor-pointer transition duration-200
-                    ${isSelected ? 'font-bold' : 'text-black'}
-                    ${correct ? 'border-green-600 text-green-700' : ''}
-                    ${wrong ? 'border-red-500 text-red-600' : ''}
-                    ${!isSelected ? 'hover:bg-blue-100 border-gray-300' : ''}
-                  `}
-                >
-                  {word}
-                </span>
-              );
-            })}
+          {/* Word Table with 3-4-3 layout */}
+          <div className="bg-white border-2 border-black rounded-[25px] p-6 space-y-3 max-w-md mx-auto">
+            {wordRows.map((row, rowIndex) => (
+              <div key={rowIndex} className="flex justify-center gap-6 flex-wrap">
+                {row.map((word) => {
+                  const isSelected = selectedWords.includes(word);
+                  const correct = isSelected && isCorrect(word);
+                  const wrong = isSelected && !isCorrect(word);
+
+                  return (
+                    <span
+                      key={word}
+                      onClick={() => toggleWord(word)}
+                      className={`px-4 py-2 border-2 rounded-full text-sm cursor-pointer transition duration-200
+                        ${isSelected ? 'font-bold' : 'text-black'}
+                        ${correct ? 'border-green-600 text-green-700' : ''}
+                        ${wrong ? 'border-red-500 text-red-600' : ''}
+                        ${!isSelected ? 'hover:bg-blue-100 border-gray-300' : ''}
+                      `}
+                    >
+                      {word}
+                    </span>
+                  );
+                })}
+              </div>
+            ))}
           </div>
+          {/* End Word Table */}
         </div>
       </div>
 
@@ -153,6 +183,8 @@ export default function HomeScreen() {
     </div>
   );
 }
+
+
 
 
 

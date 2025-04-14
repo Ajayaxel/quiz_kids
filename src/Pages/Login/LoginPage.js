@@ -1,13 +1,20 @@
 import React, { useState } from "react";
-import { FaGoogle, FaFacebookF, FaApple, FaEnvelope, FaLock, FaUser } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import {
+  FaGoogle,
+  FaFacebookF,
+  FaApple,
+  FaEnvelope,
+  FaLock,
+  FaUser,
+} from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginScreen() {
   const [isRegistering, setIsRegistering] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate('/home');
+    navigate("/videopage");
   };
 
   const handleRegisterClick = () => {
@@ -19,25 +26,22 @@ export default function LoginScreen() {
   };
 
   return (
-    <div
-      className="w-screen h-screen relative bg-cover bg-center flex items-center justify-end"
-      style={{ backgroundImage: "url('/neww  bg 1.png')" }}
-    >
-      {/* Bottom-left animal image */}
-      <div className="absolute bottom-4 left-12">
+    <div className="min-h-screen w-full flex flex-col md:flex-row bg-cover bg-center" style={{ backgroundImage: "url('/neww  bg 1.png')" }}>
+      {/* Left side: Bear image */}
+      <div className="w-full md:w-1/2 flex justify-center items-end relative pt-10 md:pt-0">
         <img
-          src="/all3 1.png"
+          src="/all gif.gif"
           alt="Animals"
-          className="h-[700px] object-contain"
+          className="max-h-[300px] md:max-h-[500px] lg:max-h-[700px] object-contain w-auto"
         />
       </div>
 
-      {/* Login box */}
-      <div className="mr-[300px] w-[688px] h-[640px] bg-white rounded-3xl shadow-xl flex items-center justify-center">
-        <div className="w-full h-full px-10 flex flex-col justify-between py-6">
+      {/* Right side: Login form */}
+      <div className="w-full md:w-1/2 flex justify-center items-center px-4 sm:px-8 md:px-12 py-8">
+        <div className="w-full max-w-[95%] sm:max-w-[480px] md:max-w-[520px] lg:max-w-[600px] bg-white rounded-3xl shadow-xl p-6 sm:p-8 md:p-10">
           {/* Heading */}
           <div className="text-center">
-            <h2 className="text-4xl font-bold text-black">
+            <h2 className="text-3xl sm:text-4xl font-bold text-black">
               {isRegistering ? "Create Account" : "Welcome"}
             </h2>
             <p className="text-sm text-gray-500 mt-1">
@@ -46,43 +50,34 @@ export default function LoginScreen() {
           </div>
 
           {/* Form Fields */}
-          <div className="flex flex-col gap-4 mt-6 transition-all duration-300 ease-in-out">
-            {/* Name Field for Registration */}
+          <div className="flex flex-col gap-4 mt-6">
             {isRegistering && (
-              <div>
-                <div className="flex items-center border border-black-100 rounded-lg px-3 mt-1">
-                  <FaUser className="text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    className="w-full p-3 outline-none transition duration-300"
-                  />
-                </div>
+              <div className="flex items-center border border-gray-300 rounded-lg px-3 mt-1">
+                <FaUser className="text-gray-400 mr-2" />
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="w-full p-3 outline-none"
+                />
               </div>
             )}
 
-            {/* Email Field */}
-            <div>
-              <div className="flex items-center border border-black-100 rounded-lg px-3 mt-1">
-                <FaEnvelope className="text-gray-400" />
-                <input
-                  type="email"
-                  placeholder="example@mail.com"
-                  className="w-full p-3 outline-none transition duration-300"
-                />
-              </div>
+            <div className="flex items-center border border-gray-300 rounded-lg px-3 mt-1">
+              <FaEnvelope className="text-gray-400 mr-2" />
+              <input
+                type="email"
+                placeholder="example@mail.com"
+                className="w-full p-3 outline-none"
+              />
             </div>
 
-            {/* Password Field */}
-            <div>
-              <div className="flex items-center border border-black-100 rounded-lg px-3 mt-1">
-                <FaLock className="text-gray-400" />
-                <input
-                  type="password"
-                  placeholder="**********"
-                  className="w-full p-3 outline-none transition duration-300"
-                />
-              </div>
+            <div className="flex items-center border border-gray-300 rounded-lg px-3 mt-1">
+              <FaLock className="text-gray-400 mr-2" />
+              <input
+                type="password"
+                placeholder="**********"
+                className="w-full p-3 outline-none"
+              />
             </div>
 
             <div className="text-right text-sm text-black mt-2 cursor-pointer">
@@ -94,7 +89,7 @@ export default function LoginScreen() {
           <button
             onClick={handleLogin}
             type="submit"
-            className="bg-blue-500 font-bold text-sm text-black bg-opacity-30 py-3 rounded-lg border border-black-300 backdrop-blur-lg hover:bg-blue-600 hover:bg-opacity-40 transition duration-300"
+            className="bg-blue-500 font-bold text-sm text-black bg-opacity-30 py-3 rounded-lg border border-black-300 backdrop-blur-lg hover:bg-blue-600 hover:bg-opacity-40 transition duration-300 mt-4 w-full"
           >
             {isRegistering ? "Register" : "Login"}
           </button>
@@ -106,7 +101,7 @@ export default function LoginScreen() {
             <hr className="flex-1 border-gray-300" />
           </div>
 
-          {/* Social Login Buttons */}
+          {/* Social Buttons */}
           <div className="flex justify-center gap-4">
             <button className="border p-3 rounded-lg hover:bg-gray-100 transition">
               <FaGoogle className="text-xl" />
@@ -119,29 +114,27 @@ export default function LoginScreen() {
             </button>
           </div>
 
-          {/* Register Prompt */}
+          {/* Footer */}
           <p className="text-center text-sm text-gray-600 mt-4">
             {isRegistering ? (
               <>
                 Already have an account?{" "}
-                <a
-                  href="#"
-                  className="text-black font-bold"
+                <span
                   onClick={handleLoginClick}
+                  className="text-black font-bold cursor-pointer"
                 >
                   Login Now
-                </a>
+                </span>
               </>
             ) : (
               <>
                 Don’t have an account?{" "}
-                <a
-                  href="#"
-                  className="text-blue-500 font-medium"
+                <span
                   onClick={handleRegisterClick}
+                  className="text-blue-500 font-medium cursor-pointer"
                 >
                   Register Now
-                </a>
+                </span>
               </>
             )}
           </p>
@@ -150,6 +143,10 @@ export default function LoginScreen() {
     </div>
   );
 }
+
+
+
+
 
 
 
