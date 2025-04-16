@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import TopBar from '../Compontes/TopBar';
 import Navabr from '../Compontes/Navabr';
 
 const QuizPageFour = () => {
@@ -23,32 +22,49 @@ const QuizPageFour = () => {
     setChecked(false);
   };
 
+  const handleNext = () => {
+    // Add navigation to next activity here
+    console.log("Navigate to next activity");
+  };
+
   return (
-    <div className="h-screen flex flex-col font-[Comic Sans MS]" >
-      <Navabr questionNumber={4} totalQuestions={4} />
-      <div className="flex flex-1 mx-2 my-2 bg-white rounded-br-[40px] relative overflow-y-auto px-6 py-4">
-        {/* Star image on the left side */}
-        <img src='/Group 2.png' className="absolute top-[10%] left-20" />
-        
-        {/* Content moved to the right side */}
-        <div className="w-full pt-10 max-w-7xl px-12 ml-auto">
-          {/* Instructions */}
-          <div className="mt-6 flex justify-end">
-            <div className="w-2/3">
-              <p className="text-lg font-bold text-black">
-                4. Type a <span className="text-black font-bold">person</span>, <span className="text-black font-bold">place</span>, or <span className="text-black font-bold">thing</span> to complete each sentence.
-              </p>
-              <p className="mt-2">Example: The <span className="text-purple-800 font-bold">baby</span> is crying.</p>
-            </div>
+    <div className="flex flex-col min-h-screen bg-white">
+<Navabr questionNumber={4} totalQuestions={4} />
+
+      {/* Main Content */}
+      <div className="flex-1 max-w-screen-xl mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
+        {/* Left side image */}
+        <div className="w-full lg:w-1/2 flex justify-center items-center">
+          <img
+            src="/Group 20.png"
+            alt="Quiz Illustration"
+            className="w-full max-w-md lg:max-w-full h-auto max-h-[730px] object-contain"
+          />
+        </div>
+
+        {/* Right side content */}
+        <div className="w-full lg:w-1/2 flex flex-col justify-between">
+          {/* Top-right image */}
+          <div className="flex justify-end">
+            <img
+              src="/Group 2 (1).png"
+              alt="Top Decoration"
+              className="w-[156px] h-[94px] object-contain"
+            />
           </div>
 
-          {/* Challenge Label */}
-          <div className="absolute left-44 top-40 bg-orange-400 text-white font-bold px-2 py-1 text-sm transform rotate-[20deg] shadow-lg rounded-full">
-            Challenge!
+          {/* Header */}
+          <div className="text-start qusetion-font px-2">
+            <p className="text-xl font-semibold">
+              4. Type a <span className="font-bold qusetion-font">person, place, or thing</span> to complete each sentence.
+            </p>
+            <p className="text-base font-normal mt-1">
+              <span className="font-semibold">Example:</span> <span className="font-bold qusetion-font">The baby</span> is crying.
+            </p>
           </div>
 
-          {/* Sentences */}
-          <ul className="mt-6 space-y-5 text-gray-700 flex flex-col items-end">
+          {/* Question List */}
+          <ul className="mt-6 qusetion-font space-y-5 text-gray-700 flex flex-col items-end">
             {[
               'The _____ gave us homework to complete. (person)',
               'I saw a swan swimming in the _____. (place)',
@@ -80,30 +96,37 @@ const QuizPageFour = () => {
             })}
           </ul>
 
-          {/* Buttons - now aligned to the right */}
-          <div className="absolute bottom-4 right-10 flex gap-4">
+          {/* Buttons aligned to bottom right */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-end items-end mt-auto px-2">
             <button
               onClick={handleReset}
-              className="px-6 py-2 rounded-lg border-2 border-cyan-400 text-cyan-500 font-bold bg-white hover:bg-cyan-100"
+              className="w-full sm:w-[110px] h-[38px] rounded-[10px] border-2 border-sky-400 text-sky-500 font-bold text-sm"
             >
               Try Again
             </button>
             <button
               onClick={handleCheck}
-              className="px-6 py-2 rounded-lg bg-green-500 text-white font-bold hover:bg-green-600"
+              className="w-full sm:w-[110px] h-[38px] rounded-[10px] border-2 border-sky-400 text-sky-500 font-bold text-sm"
             >
-              Next Worksheet
+              Check Answer
+            </button>
+            <button
+              onClick={handleNext}
+              className="w-full sm:w-[110px] h-[38px] rounded-[10px] bg-green-500 text-white font-bold text-sm"
+            >
+              Next Activity
             </button>
           </div>
         </div>
-        
-      
       </div>
+
+      {/* Footer - sticks to bottom */}
       <div className="w-full">
-        <img src="/Group 21.png" alt="Ice Decoration" className="w-full" />
+        <img src="/Group 21.png" alt="Footer Decoration" className="w-full object-cover h-[60px]" />
       </div>
     </div>
   );
 };
 
 export default QuizPageFour;
+

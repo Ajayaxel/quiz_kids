@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Sassoon Primary Std';
+    src: url('./assets/fonts/sassoon-primary-std.otf') format('opentype');
+  }
+  
+  .qusetion-font{
+    font-family: 'Sassoon Primary Std', sans-serif;
+  }
+  
